@@ -1,0 +1,9 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables' as vars;
+@use 'sass:map';
+
+.container {
+  @include mixins.flex($dir: column) {
+    align-items: center;
+  }
+}

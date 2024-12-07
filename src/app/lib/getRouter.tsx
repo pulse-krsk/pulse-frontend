@@ -1,0 +1,60 @@
+import { ROUTER_PATHS } from '@/shared/constants';
+import { ItemsNotFound } from '@/shared/ui';
+import type { RouteObject } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
+
+export const getRouter = (isAuth: boolean) => {
+  const router: RouteObject[] = [];
+
+  if (isAuth) {
+    router.push(
+      {
+        path: '*',
+        element: <Navigate to={ROUTER_PATHS.HOME} />,
+      },
+      {
+        path: ROUTER_PATHS.HOME,
+        element: (
+          <>
+            <div>Home layout</div>
+            <Outlet />
+          </>
+        ),
+        children: [
+          {
+            index: true,
+            element: <ItemsNotFound label="По вашему запросу ничего не найдено" />,
+          },
+        ],
+      },
+    );
+  } else {
+    router.push(
+      {
+        path: '*',
+        element: <Navigate to={ROUTER_PATHS.HOME + ROUTER_PATHS.LOGIN} />,
+      },
+      {
+        path: ROUTER_PATHS.HOME + ROUTER_PATHS.LOGIN,
+        element: (
+          <>
+            <div>Login layout</div>
+            <Outlet />
+          </>
+        ),
+        children: [
+          {
+            index: true,
+            element: <div>Login</div>,
+          },
+          {
+            path: ROUTER_PATHS.YA_OAUTH_HELP,
+            element: <div>Страница для получения токена</div>,
+          },
+        ],
+      },
+    );
+  }
+
+  return createBrowserRouter(router);
+};
