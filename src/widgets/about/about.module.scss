@@ -1,5 +1,5 @@
 .title {
-  font-size: 34px;
+  font-size: 48px;
   font-weight: 900;
 
   @media (width <= 48em) {
@@ -31,7 +31,7 @@
   &::after {
     content: '';
     display: block;
-    background-color: var(--mantine-color-red-filled);
+    background-color: #00416b;
     width: 45px;
     height: 2px;
     margin-top: var(--mantine-spacing-sm);
