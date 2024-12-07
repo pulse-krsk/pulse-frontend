@@ -1,6 +1,6 @@
 import { fetchBaseQuery as RTKFetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { SERVER_URL } from '../constants';
 import camelize from 'camelize-ts';
+import { BASE_API_URL } from './constants';
 
 export const baseResponseHandler = async (response: Response) => {
   if (response.ok) {
@@ -14,7 +14,7 @@ export const baseResponseHandler = async (response: Response) => {
 };
 
 export const baseQuery = RTKFetchBaseQuery({
-  baseUrl: SERVER_URL,
+  baseUrl: BASE_API_URL,
   credentials: 'include',
   responseHandler: baseResponseHandler,
 });
