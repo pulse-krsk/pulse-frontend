@@ -1,4 +1,13 @@
-import { ActionIcon, AppShell, Burger, Button, Container, Flex, Group } from '@mantine/core';
+import {
+  ActionIcon,
+  Anchor,
+  AppShell,
+  Burger,
+  Button,
+  Container,
+  Flex,
+  Group,
+} from '@mantine/core';
 import { RxAvatar } from 'react-icons/rx';
 import { useDisclosure } from '@mantine/hooks';
 import { LogoSvg } from '@/shared/assets';
@@ -10,7 +19,6 @@ import { joinPaths } from '@/shared/lib';
 const links = [
   { link: ROUTER_PATHS.HOME, label: 'главная' },
   { link: ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.EVENTS), label: 'мероприятия' },
-  { link: 'https://google.com', label: 'сотрудничество' },
 ];
 
 export const Header = () => {
@@ -28,6 +36,20 @@ export const Header = () => {
         <LogoSvg height={23} />
         <Group gap={4} visibleFrom="xs">
           {items}
+          <Anchor
+            href="https://forms.yandex.ru/u/6754606984227c4dc164e016/"
+            className={classes.link}
+            target="_blank"
+            style={{
+              textDecoration: 'none',
+              color: 'light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0))',
+              padding: '8px 12px',
+              borderRadius: 'var(--mantine-radius-sm)',
+              fontSize: 'var(--mantine-font-size-sm)',
+              fontWeight: 500,
+            }}>
+            сотрудничество
+          </Anchor>
         </Group>
         <Group gap={16} visibleFrom="xs">
           {!isAuth ? (
