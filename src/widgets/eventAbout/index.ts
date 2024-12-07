@@ -1,0 +1,1 @@
+export { EventAbout } from './eventAbout';
