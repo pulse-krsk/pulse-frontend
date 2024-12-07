@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { withRouter } from 'storybook-addon-remix-react-router';
-import { Header } from './Header';
+import { Onboarding } from './Onboarding';
 import { ThemeProvider } from '@/app/providers';
 import { AppShell } from '@mantine/core';
 
 const meta = {
-  component: Header,
+  component: Onboarding,
   decorators: [
     withRouter,
     (Story) => {
@@ -18,15 +18,15 @@ const meta = {
       );
     },
   ],
-  title: 'Widgets/Header',
+  title: 'Widgets/Onboarding',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof Onboarding>;
 
-type Story = StoryObj<typeof Header>;
+type Story = StoryObj<typeof Onboarding>;
 
-export const HeaderDefault: Story = {};
+export const OnboardingDefault: Story = {};
 
 export default meta;
