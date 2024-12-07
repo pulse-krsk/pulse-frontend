@@ -1,4 +1,5 @@
 import { AuthLayout, LoginPage, YaOauthHelpPage } from '@/pages/auth';
+import { EventsPage } from '@/pages/events';
 import { ROUTER_PATHS } from '@/shared/constants';
 import type { RouteObject } from 'react-router-dom';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 export const getRouter = (isAuth: boolean) => {
   const router: RouteObject[] = [];
 
-  if (isAuth) {
+  if (!isAuth) {
     router.push(
       {
         path: '*',
@@ -24,6 +25,10 @@ export const getRouter = (isAuth: boolean) => {
           {
             index: true,
             element: <div>Home</div>,
+          },
+          {
+            path: ROUTER_PATHS.EVENTS,
+            element: <EventsPage />,
           },
         ],
       },
