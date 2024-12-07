@@ -1,8 +1,9 @@
 import { HomePage } from '@/pages/home';
 import { HomeLayout } from '@/pages/home/layout';
+import { AuthLayout, LoginPage, YaOauthHelpPage } from '@/pages/auth';
 import { ROUTER_PATHS } from '@/shared/constants';
 import type { RouteObject } from 'react-router-dom';
-import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const getRouter = (isAuth: boolean) => {
   const router: RouteObject[] = [];
@@ -36,20 +37,15 @@ export const getRouter = (isAuth: boolean) => {
       },
       {
         path: ROUTER_PATHS.HOME + ROUTER_PATHS.LOGIN,
-        element: (
-          <>
-            <div>Login layout</div>
-            <Outlet />
-          </>
-        ),
+        element: <AuthLayout />,
         children: [
           {
             index: true,
-            element: <div>Login</div>,
+            element: <LoginPage />,
           },
           {
             path: ROUTER_PATHS.YA_OAUTH_HELP,
-            element: <div>Страница для получения токена</div>,
+            element: <YaOauthHelpPage />,
           },
         ],
       },
