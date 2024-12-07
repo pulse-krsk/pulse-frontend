@@ -33,7 +33,9 @@ export const Header = () => {
   return (
     <AppShell.Header>
       <Flex visibleFrom="xs" px={160} h={59} justify="space-between" align="center">
-        <LogoSvg height={23} />
+        <Link to={{ pathname: links[0].link }}>
+          <LogoSvg height={23} />
+        </Link>
         <Group gap={4} visibleFrom="xs">
           {items}
           <Anchor

@@ -25,11 +25,15 @@ export const ReviewSection = () => {
 
   return (
     <AppShell.Section>
-      <Flex>
-        <Title>отзывы</Title>
-        <Button>Оставить свой отзыв</Button>
+      <Flex direction={'column'} gap={48}>
+        <Flex justify={'space-between'} align={'center'}>
+          <Title>Отзывы</Title>
+          <Button variant="outline" c="red" color={'red'}>
+            Оставить свой отзыв
+          </Button>
+        </Flex>
+        <SimpleGrid cols={3}>{cards}</SimpleGrid>
       </Flex>
-      <SimpleGrid cols={3}>{cards}</SimpleGrid>
     </AppShell.Section>
   );
 };
