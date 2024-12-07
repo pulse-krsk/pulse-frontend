@@ -36,6 +36,7 @@ export const EventCardDefault: Story = {
       start_time: faker.date.recent(),
       end_time: faker.date.recent(),
       title: faker.commerce.productName(),
+      types: [{ type: 'sport' }, { type: 'music' }],
     },
   },
 };
