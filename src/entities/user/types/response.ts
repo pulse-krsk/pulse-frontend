@@ -1,5 +1,5 @@
 import type { User } from '@/entities/user/types';
 
-export type GetProfileRequest = User & {
+export type GetProfileResponse = User & {
   types: string[];
 };
