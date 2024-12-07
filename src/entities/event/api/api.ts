@@ -9,6 +9,7 @@ import type {
 } from '../types';
 import { getControllerSignal, joinPaths } from '@/shared/lib';
 import snakify from 'snakify-ts';
+import type { GetClosestEventsResponse } from '../types/response';
 
 const TAG_TYPES = Object.values(TAGS);
 
@@ -46,7 +47,7 @@ export const eventApi = createApi({
       }),
       providesTags: () => [{ type: TAGS.EVENT_TYPES }],
     }),
-    getClosestEvents: builder.query<GetEventsResponse, void>({
+    getClosestEvents: builder.query<GetClosestEventsResponse, void>({
       query: () => ({
         url: joinPaths(API_PATHS.GET_CLOSEST_EVENTS),
         signal: getControllerSignal(),
