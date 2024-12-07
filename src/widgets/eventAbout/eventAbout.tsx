@@ -1,9 +1,15 @@
 import { AppShell, Badge, Flex, Image, Text, Title } from '@mantine/core';
-import type { EventAboutProps } from './eventAboutProps';
 import { formatDateToDayMonth } from '@/shared/lib';
 import { RxCalendar } from 'react-icons/rx';
+import { useGetEventQuery } from '@/entities/event/api';
 
-export const EventAbout = ({ event }: EventAboutProps) => {
+export const EventAbout = ({ eventId }: { eventId: string }) => {
+  const { data: event, isSuccess } = useGetEventQuery(eventId);
+
+  if (!isSuccess) {
+    return null;
+  }
+
   const eventTypesUi = event.types.map(({ type }, idx) => {
     return (
       <Badge key={idx} size="xl" c="#323E48" color="#E9ECEF" variant="filled">

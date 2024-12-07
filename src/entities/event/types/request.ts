@@ -1,5 +1,3 @@
-import type { User } from '@/entities/user/types';
+import type { EventsSearchParams } from './params';
 
-export type GetProfileRequest = User & {
-  types: string[];
-};
+export type GetEventsRequest = EventsSearchParams;

@@ -6,7 +6,9 @@ import type {
   SetEventTypesRequest,
   ToggleEmailNotificationRequest,
 } from '../types';
-import { getControllerSignal, joinPaths } from '@/shared/lib';
+import { getControllerSignal } from '@/shared/lib';
+
+const TAG_TYPES = Object.values(TAGS);
 
 export const userApi = createApi({
   reducerPath: REDUCER_API_PATH,
@@ -14,10 +16,11 @@ export const userApi = createApi({
   keepUnusedDataFor: KEEP_UNUSED_DATA_FOR,
   refetchOnFocus: true,
   refetchOnReconnect: true,
+  tagTypes: TAG_TYPES,
   endpoints: (builder) => ({
     getProfile: builder.query<GetProfileResponse, string>({
-      query: (userId) => ({
-        url: joinPaths(API_PATHS.GET_PROFILE, userId),
+      query: () => ({
+        url: API_PATHS.GET_PROFILE,
         signal: getControllerSignal(),
       }),
       providesTags: (_result, _error, userId) => [{ type: TAGS.USERS, id: userId }],

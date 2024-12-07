@@ -1,31 +1,12 @@
+import { useGetReviewsQuery } from '@/entities/review/api';
 import { ReviewCard } from '@/entities/review/ui/reviewCard';
 import { ReviewModal } from '@/features/reviews';
-import { faker } from '@faker-js/faker';
 import { AppShell, Button, Flex, SimpleGrid, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-export const ReviewSection = () => {
+export const ReviewSection = ({ eventId }: { eventId: string }) => {
   const [opened, { open, close }] = useDisclosure(false);
-
-  const review = {
-    id: faker.string.numeric(),
-    rating: 4.3,
-    body: faker.lorem.sentence(15),
-    user: {
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      avatar: faker.image.avatar(),
-      email: faker.internet.email(),
-    },
-  };
-
-  const data = [review, review, review, review, review];
-
-  const cards = data.map((review, index) => (
-    <div key={index}>
-      <ReviewCard review={review} />
-    </div>
-  ));
+  const { data: reviews, isSuccess } = useGetReviewsQuery(eventId);
 
   return (
     <AppShell.Section>
@@ -37,7 +18,15 @@ export const ReviewSection = () => {
             Оставить свой отзыв
           </Button>
         </Flex>
-        <SimpleGrid cols={3}>{cards}</SimpleGrid>
+        {isSuccess && (
+          <SimpleGrid cols={3}>
+            {reviews.map((review, index) => (
+              <div key={index}>
+                <ReviewCard review={review} />
+              </div>
+            ))}
+          </SimpleGrid>
+        )}
       </Flex>
     </AppShell.Section>
   );
