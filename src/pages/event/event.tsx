@@ -1,6 +1,7 @@
 import { useEventParams } from '@/entities/event/hooks';
 import { useAbortEffect } from '@/shared/hooks';
 import { EventAbout } from '@/widgets/eventAbout';
+import { EventMap } from '@/widgets/eventMap';
 import { ReviewSection } from '@/widgets/reviewSection';
 
 export const EventPage = () => {
@@ -16,6 +17,7 @@ export const EventPage = () => {
     <>
       <EventAbout eventId={eventId} />
       <ReviewSection eventId={eventId} />
+      <EventMap eventId={eventId} />
     </>
   );
 };
