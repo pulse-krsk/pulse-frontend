@@ -31,6 +31,9 @@ export const EventSearch = () => {
       placeholder="Поиск по названию"
       value={search}
       onChange={handleChange}
+      style={{
+        flexGrow: 1,
+      }}
     />
   );
 };
