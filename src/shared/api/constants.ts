@@ -13,4 +13,4 @@ export const API_VERSION = 'v1';
 
 export const API_PREFIX = 'api';
 
-export const BASE_API_URL = joinPaths(SERVER_URL, API_VERSION, API_PREFIX);
+export const BASE_API_URL = joinPaths(SERVER_URL, API_PREFIX, API_VERSION);

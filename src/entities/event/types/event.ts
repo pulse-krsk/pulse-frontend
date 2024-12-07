@@ -1,6 +1,6 @@
 import type { BaseEntity } from '@/shared/types';
 
-export type EventType = BaseEntity & {
+export type Event = BaseEntity & {
   img: string;
   title: string;
   description: string;
@@ -8,4 +8,5 @@ export type EventType = BaseEntity & {
   start_time: Date;
   end_time: Date;
   age_restriction: number;
+  types: { type: string }[];
 };
