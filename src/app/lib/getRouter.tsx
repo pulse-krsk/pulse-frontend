@@ -1,3 +1,5 @@
+import { HomePage } from '@/pages/home';
+import { HomeLayout } from '@/pages/home/layout';
 import { ROUTER_PATHS } from '@/shared/constants';
 import type { RouteObject } from 'react-router-dom';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
@@ -15,14 +17,13 @@ export const getRouter = (isAuth: boolean) => {
         path: ROUTER_PATHS.HOME,
         element: (
           <>
-            <div>Home layout</div>
-            <Outlet />
+            <HomeLayout />
           </>
         ),
         children: [
           {
             index: true,
-            element: <div>Home</div>,
+            element: <HomePage />,
           },
         ],
       },

@@ -23,19 +23,41 @@ export const Header = () => {
   ));
 
   return (
-    <AppShell>
-      <AppShell.Header>
-        <Flex visibleFrom="xs" px={160} h={59} justify="space-between" align="center">
-          <LogoSvg height={23} />
-          <Group gap={4} visibleFrom="xs">
+    <AppShell.Header>
+      <Flex visibleFrom="xs" px={160} h={59} justify="space-between" align="center">
+        <LogoSvg height={23} />
+        <Group gap={4} visibleFrom="xs">
+          {items}
+        </Group>
+        <Group gap={16} visibleFrom="xs">
+          {!isAuth ? (
+            <Link to={{ pathname: ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.PROFILE) }}>
+              <ActionIcon variant="default">
+                <RxAvatar />
+              </ActionIcon>
+            </Link>
+          ) : (
+            <Link to={{ pathname: ROUTER_PATHS.LOGIN }} className={classes.link}>
+              <Button color="red">Войти</Button>
+            </Link>
+          )}
+        </Group>
+      </Flex>
+      <Flex hiddenFrom="xs" py={10} px={15} justify="space-between" align="center">
+        <LogoSvg display={'block'} height={18} />
+        <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+      </Flex>
+      {opened && (
+        <Container>
+          <Group gap={4} hiddenFrom="xs">
             {items}
           </Group>
-          <Group gap={16} visibleFrom="xs">
+          <Group gap={16} hiddenFrom="xs">
             {!isAuth ? (
               <Link to={{ pathname: ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.PROFILE) }}>
-                <ActionIcon variant="default">
-                  <RxAvatar />
-                </ActionIcon>
+                <Button mx={12} my={8} color="red">
+                  Профиль
+                </Button>
               </Link>
             ) : (
               <Link to={{ pathname: ROUTER_PATHS.LOGIN }} className={classes.link}>
@@ -43,32 +65,8 @@ export const Header = () => {
               </Link>
             )}
           </Group>
-        </Flex>
-        <Flex hiddenFrom="xs" py={10} px={15} justify="space-between" align="center">
-          <LogoSvg display={'block'} height={18} />
-          <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
-        </Flex>
-        {opened && (
-          <Container>
-            <Group gap={4} hiddenFrom="xs">
-              {items}
-            </Group>
-            <Group gap={16} hiddenFrom="xs">
-              {!isAuth ? (
-                <Link to={{ pathname: ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.PROFILE) }}>
-                  <Button mx={12} my={8} color="red">
-                    Профиль
-                  </Button>
-                </Link>
-              ) : (
-                <Link to={{ pathname: ROUTER_PATHS.LOGIN }} className={classes.link}>
-                  <Button color="red">Войти</Button>
-                </Link>
-              )}
-            </Group>
-          </Container>
-        )}
-      </AppShell.Header>
-    </AppShell>
+        </Container>
+      )}
+    </AppShell.Header>
   );
 };
