@@ -46,7 +46,18 @@ export const eventApi = createApi({
       }),
       providesTags: () => [{ type: TAGS.EVENT_TYPES }],
     }),
+    getClosestEvents: builder.query<GetEventsResponse, void>({
+      query: () => ({
+        url: joinPaths(API_PATHS.GET_CLOSEST_EVENTS),
+        signal: getControllerSignal(),
+      }),
+    }),
   }),
 });
 
-export const { useGetEventQuery, useGetEventsQuery, useGetEventTypesQuery } = eventApi;
+export const {
+  useGetEventQuery,
+  useGetEventsQuery,
+  useGetEventTypesQuery,
+  useGetClosestEventsQuery,
+} = eventApi;

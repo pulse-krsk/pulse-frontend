@@ -7,7 +7,7 @@ export const BASE_URL = 'users';
 export const KEEP_UNUSED_DATA_FOR = 10 * 60; // 10 minutes
 
 export const API_PATHS = {
-  GET_PROFILE: BASE_URL,
+  GET_PROFILE: joinPaths(BASE_URL, 'profile'),
   SET_EVENT_TYPES: joinPaths(BASE_URL, 'event-types'),
   TOGGLE_EMAIL_NOTIFICATION: joinPaths(BASE_URL, 'email-notifications'),
 } as const;
