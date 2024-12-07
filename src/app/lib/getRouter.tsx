@@ -1,6 +1,7 @@
 import { HomePage } from '@/pages/home';
 import { HomeLayout } from '@/pages/home/layout';
 import { AuthLayout, LoginPage, YaOauthHelpPage } from '@/pages/auth';
+import { EventsPage } from '@/pages/events';
 import { ROUTER_PATHS } from '@/shared/constants';
 import type { RouteObject } from 'react-router-dom';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
@@ -25,6 +26,10 @@ export const getRouter = (isAuth: boolean) => {
           {
             index: true,
             element: <HomePage />,
+          },
+          {
+            path: ROUTER_PATHS.EVENTS,
+            element: <EventsPage />,
           },
         ],
       },

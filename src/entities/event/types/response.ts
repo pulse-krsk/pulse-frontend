@@ -5,3 +5,5 @@ export type GetEventsResponse = {
 };
 
 export type GetEventResponse = Event;
+
+export type GetEventTypesResponse = { type: string }[];
