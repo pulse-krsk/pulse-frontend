@@ -1,7 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { API_PATHS, KEEP_UNUSED_DATA_FOR, REDUCER_API_PATH, TAGS } from './constants';
 import { baseQuery } from '@/shared/api';
-import type { GetEventResponse, GetEventsRequest, GetEventsResponse } from '../types';
+import type {
+  GetEventResponse,
+  GetEventsRequest,
+  GetEventsResponse,
+  GetEventTypesResponse,
+} from '../types';
 import { getControllerSignal, joinPaths } from '@/shared/lib';
 import snakify from 'snakify-ts';
 
@@ -34,7 +39,14 @@ export const eventApi = createApi({
         { type: TAGS.EVENTS, id: advertisementId },
       ],
     }),
+    getEventTypes: builder.query<GetEventTypesResponse, void>({
+      query: () => ({
+        url: joinPaths(API_PATHS.GET_EVENT_TYPES),
+        signal: getControllerSignal(),
+      }),
+      providesTags: () => [{ type: TAGS.EVENT_TYPES }],
+    }),
   }),
 });
 
-export const { useGetEventQuery, useGetEventsQuery } = eventApi;
+export const { useGetEventQuery, useGetEventsQuery, useGetEventTypesQuery } = eventApi;
