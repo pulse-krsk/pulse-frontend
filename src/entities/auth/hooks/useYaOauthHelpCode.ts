@@ -6,5 +6,5 @@ import { useSearchParams } from 'react-router-dom';
  */
 export const useYaOauthHelpCode = () => {
   const [params] = useSearchParams();
-  return params.get('token');
+  return params.get('access_token');
 };

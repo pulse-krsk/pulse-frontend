@@ -5,4 +5,5 @@ export type AuthState = DefaultState & {
   user?: User;
   isAuth: boolean;
   isInit: boolean;
+  enterAsAdmin: boolean;
 };

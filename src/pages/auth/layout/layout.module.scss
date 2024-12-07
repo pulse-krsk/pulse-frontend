@@ -1,0 +1,5 @@
+@use '../../../shared/styles/mixins' as mixins;
+
+.container {
+  @include mixins.container;
+}

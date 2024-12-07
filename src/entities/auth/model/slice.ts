@@ -10,7 +10,11 @@ import type { LoginResponse, RefreshResponse } from '../types';
 const AuthSlice = createSlice({
   name: REDUCER_PATH,
   initialState,
-  reducers: {},
+  reducers: {
+    setEnterAsAdmin(state, action: PayloadAction<boolean>) {
+      state.enterAsAdmin = action.payload;
+    },
+  },
   selectors: {
     getIsLoading: (state) => state.status === 'pending',
     getIsSuccess: (state) => state.status === 'fulfilled',
@@ -21,6 +25,7 @@ const AuthSlice = createSlice({
     getUser: (state) => state.user,
     getErrors: (state) => state.errors,
     getStatus: (state) => state.status,
+    getEnterAsAdmin: (state) => state.enterAsAdmin,
   },
   extraReducers: (builder) => {
     builder

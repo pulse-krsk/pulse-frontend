@@ -1,6 +1,6 @@
-import { useAppDispatch } from '@/app/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEffect } from 'react';
-import { actions } from '../model';
+import { actions, selectors } from '../model';
 
 /**
  * Hook to handle OAuth login.
@@ -11,9 +11,10 @@ import { actions } from '../model';
  */
 export const useOauthLogin = (token: string | null) => {
   const dispatch = useAppDispatch();
+  const enterAsAdmin = useAppSelector(selectors.getEnterAsAdmin);
   useEffect(() => {
     if (token) {
-      dispatch(actions.login({ token }));
+      dispatch(actions.login({ token, enterAsAdmin }));
     }
-  }, [token, dispatch]);
+  }, [token, dispatch, enterAsAdmin]);
 };
