@@ -2,7 +2,7 @@ import { useEventsSearchParams } from '@/entities/event/hooks';
 import { useGetEventsQuery } from '@/entities/event/api';
 import { useEffect, useState } from 'react';
 import { useIntersection } from '@mantine/hooks';
-import { Box, Grid, Loader, Text } from '@mantine/core';
+import { Box, Grid, Loader, Text, Alert } from '@mantine/core'; // Добавим компонент Alert для вывода ошибок
 import { EventCard } from '@/entities/event/ui';
 import type { GetEventsResponse } from '@/entities/event/types';
 
@@ -30,15 +30,26 @@ const renderItems = (data: GetEventsResponse | undefined) => {
   ));
 };
 
-export const EventList = () => {
-  const { endDate, page, startDate, title, types, setEventsSearchParams } = useEventsSearchParams();
+const renderError = (error: { message?: string }) => {
+  return (
+    <Alert title="Ошибка загрузки" color="red">
+      {error?.message || 'Произошла ошибка при загрузке данных.'}
+    </Alert>
+  );
+};
 
-  const { data, isLoading, isFetching, isSuccess } = useGetEventsQuery({
+export const EventList = () => {
+  const { endDate, page, startDate, title, types, setEventsSearchParams, priceFrom, priceTo } =
+    useEventsSearchParams();
+
+  const { data, isLoading, isFetching, isSuccess, isError, error } = useGetEventsQuery({
     page,
     startDate,
     endDate,
     title,
     types,
+    priceFrom,
+    priceTo,
   });
 
   const [hasMore, setHasMore] = useState(true);
@@ -63,15 +74,19 @@ export const EventList = () => {
       setHasMore(false);
     }
   }, [data]);
-
   return (
     <div>
-      <Grid gutter="md">{renderItems(data)}</Grid>
+      {isError && renderError(error as { message: string })} {/* Обработка ошибки */}
+      {!isError && (
+        <>
+          <Grid gutter="md">{renderItems(data)}</Grid>
 
-      {isSuccess && hasMore && <div ref={ref}>{isFetching && <Loader />}</div>}
+          {isSuccess && hasMore && <div ref={ref}>{isFetching && <Loader />}</div>}
 
-      {isSuccess && !hasMore && renderNoMore()}
-      {(isLoading || isFetching) && renderLoading()}
+          {isSuccess && !hasMore && renderNoMore()}
+          {(isLoading || isFetching) && renderLoading()}
+        </>
+      )}
     </div>
   );
 };

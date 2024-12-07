@@ -12,7 +12,7 @@
     "lint:fix": "npm run lint -- --fix && npm run format",
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint:fix": "npm run stylelint -- --fix && npm run format",
-    "server": "json-server --watch db.json --port 8000",
+    "server": "json-server --help",
     "prepare": "husky",
     "sb": "storybook dev -p 6006",
     "build-sb": "storybook build",

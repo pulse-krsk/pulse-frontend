@@ -8,33 +8,27 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const getRouter = (isAuth: boolean) => {
   const router: RouteObject[] = [];
-
+  router.push(
+    {
+      path: '*',
+      element: <Navigate to={ROUTER_PATHS.HOME} />,
+    },
+    {
+      path: ROUTER_PATHS.HOME,
+      element: <HomeLayout />,
+      children: [
+        {
+          index: true,
+          element: <HomePage />,
+        },
+        {
+          path: ROUTER_PATHS.EVENTS,
+          element: <EventsPage />,
+        },
+      ],
+    },
+  );
   if (!isAuth) {
-    router.push(
-      {
-        path: '*',
-        element: <Navigate to={ROUTER_PATHS.HOME} />,
-      },
-      {
-        path: ROUTER_PATHS.HOME,
-        element: (
-          <>
-            <HomeLayout />
-          </>
-        ),
-        children: [
-          {
-            index: true,
-            element: <HomePage />,
-          },
-          {
-            path: ROUTER_PATHS.EVENTS,
-            element: <EventsPage />,
-          },
-        ],
-      },
-    );
-  } else {
     router.push(
       {
         path: '*',
