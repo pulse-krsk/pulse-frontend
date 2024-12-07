@@ -37,6 +37,17 @@ export const EventCardDefault: Story = {
       end_time: faker.date.recent(),
       title: faker.commerce.productName(),
       types: [{ type: 'sport' }, { type: 'music' }],
+      place: {
+        id: faker.string.numeric(),
+        address: {
+          id: faker.string.numeric(),
+          city: faker.location.city(),
+          street: faker.location.street(),
+          building: faker.location.buildingNumber(),
+        },
+        latitude: +faker.location.latitude(),
+        longitude: +faker.location.longitude(),
+      },
     },
   },
 };

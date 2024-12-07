@@ -1,4 +1,5 @@
 import type { BaseEntity } from '@/shared/types';
+import type { Place } from './place';
 
 export type Event = BaseEntity & {
   img: string;
@@ -9,4 +10,5 @@ export type Event = BaseEntity & {
   end_time: Date;
   age_restriction: number;
   types: { type: string }[];
+  place: Place;
 };
