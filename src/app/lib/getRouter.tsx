@@ -1,5 +1,4 @@
 import { ROUTER_PATHS } from '@/shared/constants';
-import { ItemsNotFound } from '@/shared/ui';
 import type { RouteObject } from 'react-router-dom';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 
@@ -23,7 +22,7 @@ export const getRouter = (isAuth: boolean) => {
         children: [
           {
             index: true,
-            element: <ItemsNotFound label="По вашему запросу ничего не найдено" />,
+            element: <div>Home</div>,
           },
         ],
       },
