@@ -8,7 +8,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 export const getRouter = (isAuth: boolean) => {
   const router: RouteObject[] = [];
 
-  if (isAuth) {
+  if (!isAuth) {
     router.push(
       {
         path: '*',

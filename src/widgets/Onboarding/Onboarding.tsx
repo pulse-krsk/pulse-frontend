@@ -7,9 +7,9 @@ export const Onboarding = () => {
   const pathEvents = ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.EVENTS);
 
   return (
-    <Flex justify="space-between" component={AppShell.Section}>
-      <Flex direction={'column'} maw={808} gap={48}>
-        <Flex direction={'column'} gap={24}>
+    <Flex justify="space-between" align={'center'} component={AppShell.Section} pos="relative">
+      <Flex direction={'column'} gap={48}>
+        <Flex direction={'column'} maw={600} gap={24}>
           <Title size={72}>Будь в центре событий твоего города</Title>
           <Text c="dimmed">
             Подписывайтесь на категории, получайте персональные рекомендации и планируйте свой досуг
@@ -22,7 +22,14 @@ export const Onboarding = () => {
           </Button>
         </Link>
       </Flex>
-      <Image src="/images/onboarding.png" alt="Здание" maw={780} visibleFrom="lg" />
+      <Image
+        src="/images/onboarding_building.png"
+        alt="Здание"
+        maw={600}
+        visibleFrom="lg"
+        pos="absolute"
+        right={-160}
+      />
     </Flex>
   );
 };
