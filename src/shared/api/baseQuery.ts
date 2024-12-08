@@ -15,5 +15,7 @@ export const baseResponseHandler = async (response: Response) => {
 
 export const baseQuery = RTKFetchBaseQuery({
   baseUrl: BASE_API_URL,
+  credentials: 'include',
+  mode: 'no-cors',
   responseHandler: baseResponseHandler,
 });

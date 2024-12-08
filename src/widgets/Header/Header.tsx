@@ -15,6 +15,8 @@ import classes from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { ROUTER_PATHS } from '@/shared/constants';
 import { joinPaths } from '@/shared/lib';
+import { selectors } from '@/entities/auth/model';
+import { useAppSelector } from '@/app/hooks';
 
 const links = [
   { link: ROUTER_PATHS.HOME, label: 'главная' },
@@ -23,7 +25,7 @@ const links = [
 
 export const Header = () => {
   const [opened, { toggle }] = useDisclosure(false);
-  const isAuth = false;
+  const isAuth = useAppSelector(selectors.getIsAuth);
   const items = links.map((link) => (
     <Link key={link.label} to={{ pathname: link.link }} className={classes.link}>
       {link.label}
@@ -54,7 +56,7 @@ export const Header = () => {
           </Anchor>
         </Group>
         <Group gap={16} visibleFrom="xs">
-          {!isAuth ? (
+          {isAuth ? (
             <Link to={{ pathname: ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.PROFILE) }}>
               <ActionIcon variant="default">
                 <RxAvatar />
@@ -77,7 +79,7 @@ export const Header = () => {
             {items}
           </Group>
           <Group gap={16} hiddenFrom="xs">
-            {!isAuth ? (
+            {isAuth ? (
               <Link to={{ pathname: ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.PROFILE) }}>
                 <Button mx={12} my={8} color="red">
                   Профиль
