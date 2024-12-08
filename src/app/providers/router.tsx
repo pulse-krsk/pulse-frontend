@@ -4,7 +4,7 @@ import { useAppSelector } from '../hooks';
 import { selectors } from '@/entities/auth/model';
 
 export const RouterProvider = () => {
-  const isAuth = true;
+  const isAuth = useAppSelector(selectors.getIsAuth);
   const isInit = useAppSelector(selectors.getIsInit);
 
   if (!isInit) return null;
