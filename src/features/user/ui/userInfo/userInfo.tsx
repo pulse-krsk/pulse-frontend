@@ -13,8 +13,17 @@ import {
 import { RxExit } from 'react-icons/rx';
 import classes from './userInfo.module.scss';
 import type { User } from '@/entities/user/types';
+import { useAppDispatch } from '@/app/hooks';
+import { useCallback } from 'react';
+import { actions } from '@/entities/auth/model';
 
 export const UserInfo = () => {
+  const dispatch = useAppDispatch();
+
+  const handleLogout = useCallback(() => {
+    dispatch(actions.logout());
+  }, [dispatch]);
+
   const user: User = {
     email: 'uR2Eo@example.com',
     firstName: 'Иван',
@@ -27,7 +36,7 @@ export const UserInfo = () => {
       <Flex direction={'column'} gap={48}>
         <Flex justify={'space-between'} align={'center'}>
           <Image radius={'50%'} src={user.avatar} alt="Аватар пользователя" w={84} h={84} />
-          <Button color="red" leftSection={<RxExit />}>
+          <Button color="red" leftSection={<RxExit />} onClick={handleLogout}>
             Выйти
           </Button>
         </Flex>

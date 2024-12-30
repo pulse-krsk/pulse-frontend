@@ -6,7 +6,8 @@ import { ROUTER_PATHS } from '@/shared/constants';
 import { Link } from 'react-router-dom';
 
 export const EventCard = ({ event }: EventCardProps) => {
-  const { id, price, age_restriction, description, img, start_time, title, types } = event;
+  const { id, price, ageRestriction, description, img, startTime, title, types } = event;
+  const fake_img = 'https://i.pinimg.com/736x/24/86/41/248641f0c552c540dede9a5801fa8205.jpg';
 
   const cardHref = ROUTER_PATHS.HOME + joinPaths(ROUTER_PATHS.EVENTS, id);
 
@@ -33,7 +34,7 @@ export const EventCard = ({ event }: EventCardProps) => {
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Card.Section p={0} className={classes.imageSection}>
-        <Image src={img} alt="Tesla Model S" width={370} height={168} fit="cover" />
+        <Image src={fake_img} alt={img} width={370} height={168} fit="cover" />
       </Card.Section>
 
       <Group justify="space-between" mt="md">
@@ -51,10 +52,10 @@ export const EventCard = ({ event }: EventCardProps) => {
             }}>
             {description}
           </Text>
-          <Text fw={500}>{age_restriction + '+'}</Text>
+          <Text fw={500}>{ageRestriction + '+'}</Text>
         </div>
         <Badge color="#1864AB" variant="outline">
-          {formatDateToDayMonth(start_time)}
+          {formatDateToDayMonth(startTime)}
         </Badge>
       </Group>
 

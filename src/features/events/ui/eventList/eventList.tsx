@@ -5,6 +5,7 @@ import { useIntersection } from '@mantine/hooks';
 import { Box, Grid, Loader, Text, Alert } from '@mantine/core'; // Добавим компонент Alert для вывода ошибок
 import { EventCard } from '@/entities/event/ui';
 import type { GetEventsResponse } from '@/entities/event/types';
+import { PRICE_TO_DEFAULT_VALUE } from '@/entities/event/constants/params';
 
 const renderLoading = () => {
   return (
@@ -42,6 +43,8 @@ export const EventList = () => {
   const { endDate, page, startDate, title, types, setEventsSearchParams, priceFrom, priceTo } =
     useEventsSearchParams();
 
+  const priceToWithDefault = priceTo === PRICE_TO_DEFAULT_VALUE ? undefined : priceTo;
+
   const { data, isLoading, isFetching, isSuccess, isError, error } = useGetEventsQuery({
     page,
     startDate,
@@ -49,7 +52,7 @@ export const EventList = () => {
     title,
     types,
     priceFrom,
-    priceTo,
+    priceTo: priceToWithDefault,
   });
 
   const [hasMore, setHasMore] = useState(true);

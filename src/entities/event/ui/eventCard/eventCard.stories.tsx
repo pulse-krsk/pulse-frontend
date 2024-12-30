@@ -30,11 +30,11 @@ export const EventCardDefault: Story = {
     event: {
       id: faker.string.numeric(),
       price: +faker.commerce.price(),
-      age_restriction: +faker.number.int(),
+      ageRestriction: +faker.number.int(),
       description: faker.lorem.sentence(),
       img: faker.image.url(),
-      start_time: faker.date.recent(),
-      end_time: faker.date.recent(),
+      startTime: String(faker.date.recent()),
+      endTime: String(faker.date.recent()),
       title: faker.commerce.productName(),
       types: [{ type: 'sport' }, { type: 'music' }],
       place: {

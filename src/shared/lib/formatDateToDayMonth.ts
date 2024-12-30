@@ -1,5 +1,5 @@
-export const formatDateToDayMonth = (date: Date) => {
-  // Массив с названиями месяцев
+// TODO: ИЛЮХА ПЕРЕДАЛ ССАНУЮ ДАТУ НЕ ПО ISO
+export const formatDateToDayMonth = (dateStr: string) => {
   const months = [
     'января',
     'февраля',
@@ -15,10 +15,23 @@ export const formatDateToDayMonth = (date: Date) => {
     'декабря',
   ];
 
-  // Извлекаем день и месяц
-  const day = date.getDate();
-  const month = months[date.getMonth()]; // Получаем название месяца
+  // Преобразуем строку "DD.MM.YYYYTHH:mm:ss" в "YYYY-MM-DDTHH:mm:ss"
+  const [datePart, timePart] = dateStr.split('T');
+  const [day, month, year] = datePart.split('.');
+  const formattedDateStr = `${year}-${month}-${day}T${timePart}`;
+
+  // Создаём объект Date из преобразованной строки
+  const date = new Date(formattedDateStr);
+
+  // Проверяем, что дата корректна
+  if (isNaN(date.getTime())) {
+    throw new Error(`Invalid date: ${dateStr}`);
+  }
+
+  // Извлекаем день и название месяца
+  const dayNumber = date.getDate();
+  const monthName = months[date.getMonth()]; // Индекс месяца от 0 до 11
 
   // Возвращаем строку в формате "ДД месяц"
-  return `${day} ${month}`;
+  return `${dayNumber} ${monthName}`;
 };

@@ -6,9 +6,9 @@ export type Event = BaseEntity & {
   title: string;
   description: string;
   price: number;
-  start_time: Date;
-  end_time: Date;
-  age_restriction: number;
+  startTime: string;
+  endTime: string;
+  ageRestriction: number;
   types: { type: string }[];
   place: Place;
 };
